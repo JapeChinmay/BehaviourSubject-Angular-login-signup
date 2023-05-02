@@ -1,0 +1,40 @@
+.login-heading {
+  margin-top: 3rem;
+  color: #845ec2;
+}
+
+.login-form-main {
+  border: 1px solid #845ec2;
+  padding: 2rem;
+}
+
+.container {
+  width: max(450px, 40%);
+  margin: calc(3rem + 3vw) auto;
+}
+
+.login-button {
+  background-color: #845ec2;
+  width: calc(6rem + 0.6vw);
+  height: calc(2rem + 0.6vw);
+  padding: 3px;
+  cursor: pointer;
+}
+
+.go-to-sign-up-from-login-page-text {
+  margin-top: 1rem;
+  color: #845ec2;
+}
+
+.input.ng-invalid.ng-touched.ng-dirty {
+  border: 1px solid red;
+}
+
+.form-control:focus {
+  border-color: none;
+  box-shadow: none;
+}
+
+small {
+  cursor: pointer;
+}

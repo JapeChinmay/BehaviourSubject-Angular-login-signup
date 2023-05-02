@@ -1,0 +1,258 @@
+<h2 class="login-heading text-center">Signup</h2>
+<div class="container form-container">
+  <form
+    class="login-form-main"
+    [formGroup]="signupform"
+    (ngSubmit)="onSignup()"
+  >
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Firstname</label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        formControlName="firstname"
+        required
+        (keypress)="onPressingChar($event)"
+      />
+
+      <small
+        *ngIf="
+          signupform.controls['firstname'].dirty &&
+          signupform.hasError('required', 'firstname')
+        "
+        class="text-danger"
+        >*First name is required</small
+      >
+      <br />
+      <small
+        *ngIf="
+          signupform.controls['firstname'].dirty &&
+          signupform.hasError('pattern', 'firstname')
+        "
+        class="text-danger"
+        >*firstname must be alphabet</small
+      >
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputEmail12" class="form-label">lastname</label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail2"
+        aria-describedby="emilHelp"
+        formControlName="lastname"
+        required
+        (keypress)="onPressingChar($event)"
+      />
+
+      <small
+        *ngIf="
+          signupform.controls['lastname'].dirty &&
+          signupform.hasError('required', 'lastname')
+        "
+        class="text-danger"
+        >*Last name is required</small
+      >
+      <br />
+
+      <small
+        *ngIf="
+          signupform.controls['lastname'].dirty &&
+          signupform.hasError('pattern', 'lastname')
+        "
+        class="text-danger"
+        >*lastname must be alphabet</small
+      >
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail3"
+        aria-describedby="emailHelp"
+        formControlName="email"
+        required
+      />
+
+      <small
+        *ngIf="
+          signupform.controls['email'].dirty &&
+          signupform.hasError('required', 'email')
+        "
+        class="text-danger"
+        >*Email is required and must be valid</small
+      >
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        formControlName="password"
+      />
+      <small
+        *ngIf="
+          signupform.controls['password'].dirty &&
+          signupform.hasError('minlength', 'password')
+        "
+        class="text-danger"
+        >*password must be 8 chars long</small
+      >
+
+      <small
+        *ngIf="
+          signupform.controls['password'].dirty &&
+          signupform.hasError('required', 'password')
+        "
+        class="text-danger"
+      >
+        * passsword is required
+      </small>
+
+      <small
+        *ngIf="
+          signupform.controls['confirmpassword'].dirty &&
+          signupform.controls['password'].dirty &&
+          signupform.hasError('nomatch')
+        "
+        class="text-danger"
+      >
+        *Passwords must match to create account
+      </small>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label"
+        >Confirm Password</label
+      >
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword2"
+        formControlName="confirmpassword"
+        required
+      />
+
+      <small
+        *ngIf="
+          signupform.controls['confirmpassword'].dirty &&
+          signupform.hasError('required', 'confirmpassword')
+        "
+        class="text-danger"
+        >*Confirm the password and must be matching</small
+      >
+
+      <br />
+      <small
+        *ngIf="
+          signupform.controls['confirmpassword'].dirty &&
+          signupform.controls['password'].dirty &&
+          signupform.hasError('nomatch')
+        "
+        class="text-danger"
+      >
+        *Passwords must match to create account
+      </small>
+    </div>
+
+    <div class="mb-3 form-check">
+      <input
+        type="date"
+        class="form-control"
+        id="birthdate"
+        required
+        style="color: #4d89eb"
+        formControlName="birthdate"
+      />
+
+      <small
+        *ngIf="
+          signupform.controls['birthdate'].dirty &&
+          signupform.hasError('required', 'birthdate')
+        "
+        class="text-danger"
+        >*Birthdate is required</small
+      >
+    </div>
+
+    <div class="mb-3">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">+91</span>
+        </div>
+        <input
+          type="tel"
+          class="form-control"
+          id="phone"
+          placeholder="Enter Phone Number"
+          required
+          formControlName="phone"
+        />
+
+        <br />
+
+        <small
+          *ngIf="
+            signupform.controls['phone'].dirty &&
+            signupform.hasError('required', 'phone')
+          "
+          class="text-danger"
+          >*Phone is required</small
+        >
+        <small
+          *ngIf="signupform.get('phone')?.hasError('pattern', 'phone')"
+          class="text-danger"
+          >*Number must be 10 charecters</small
+        >
+        <br />
+
+        <small
+          *ngIf="signupform.get('phone')?.hasError('minlength')"
+          class="text-danger"
+          >*Must be 10 digits long</small
+        >
+      </div>
+    </div>
+
+    <div class="mb-3 form-check">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="exampleCheck1"
+        formControlName="termsAndConditions"
+        (change)="onChangeCheckbox($event)"
+      />
+      <label class="form-check-label" for="exampleCheck1" required
+        >I agree on terms and conditions</label
+      >
+      <br />
+
+      <small
+        *ngIf="
+          signupform.controls['termsAndConditions'].invalid &&
+          !signupform.controls['termsAndConditions'].value
+        "
+        class="text-danger"
+        >*Please check the terms and conditions</small
+      >
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <button
+        type="submit"
+        class="btn btn-primary btn-lg login-button"
+        [disabled]="signupform.invalid"
+      >
+        Signup
+      </button>
+      <small class="go-to-sign-up-from-login-page-text" routerLink="../login"
+        >Already have an account? Login here</small
+      >
+    </div>
+  </form>
+</div>
