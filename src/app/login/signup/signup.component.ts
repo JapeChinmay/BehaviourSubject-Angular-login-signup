@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { userDetails } from 'src/app/Interface';
+import { dataSharingService } from 'src/app/dataSharingService';
 
 @Component({
   selector: 'app-signup',
@@ -10,7 +12,11 @@ import { Router } from '@angular/router';
 export class SignupComponent {
   signupform!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private dataSharingService: dataSharingService
+  ) {}
 
   ngOnInit(): void {
     this.signupform = this.formBuilder.group(
@@ -57,11 +63,25 @@ export class SignupComponent {
   onSignup() {
     if (this.signupform.valid) {
       console.log('sign up req');
+
+      // creating user details obj
+
+      const userObj: userDetails = {
+        name: this.signupform.value.firstname,
+        lastname: this.signupform.value.lastname,
+      };
       localStorage.setItem(
         'SignupformData',
         JSON.stringify(this.signupform.value)
       );
+
+      console.log(userObj);
+
+      // sending the data
+      this.dataSharingService.sendUserDatatoLogin(userObj);
+
       this.router.navigate(['login']);
+
       alert('Signup success');
     } else {
       alert('Form is invalid');

@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/auth-service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
+import { dataSharingService } from 'src/app/dataSharingService';
+import { productdetails } from 'src/app/Interface/productInterface';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +18,8 @@ export class HomeComponent {
   constructor(
     private router: Router,
     private apiService: ApiService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dataSharingService: dataSharingService
   ) {}
 
   ngOnInit(): void {
@@ -24,13 +27,9 @@ export class HomeComponent {
       this.products = data;
       console.log(data);
     });
+
+    //
   }
 
-  logOut() {
-    localStorage.removeItem('SignupformData'); // delete
-    this.authService.logout(); //set false;
-
-    console.log('logged out');
-    this.router.navigate(['/login']);
-  }
+  addToCart(product: productdetails) {}
 }

@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { userDetails } from 'src/app/Interface';
 import { AuthService } from 'src/app/auth-service';
+import { dataSharingService } from 'src/app/dataSharingService';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,13 @@ import { AuthService } from 'src/app/auth-service';
 })
 export class LoginComponent {
   loginform!: FormGroup;
+
+  userDataFromSignup: userDetails | undefined;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private dataSharingService: dataSharingService
   ) {}
 
   ngOnInit(): void {
@@ -23,6 +27,13 @@ export class LoginComponent {
       password: ['', Validators.required],
       termsAndConditions: [false, Validators.requiredTrue],
     });
+
+    this.dataSharingService
+      .getUserDataForLogin()
+      .subscribe((comingData: userDetails) => {
+        this.userDataFromSignup = comingData;
+        // console.log(comingData, typeof comingData);
+      });
   }
 
   //// loginning
@@ -31,8 +42,8 @@ export class LoginComponent {
     if (this.loginform.valid) {
       console.log('login called');
 
-      console.log('email entered:', this.loginform.value.email);
-      console.log('password entered:', this.loginform.value.password);
+      // console.log('email entered:', this.loginform.value.email);
+      // console.log('password entered:', this.loginform.value.password);
 
       // logic
       console.log(this.loginform.value);
@@ -47,35 +58,35 @@ export class LoginComponent {
           parsedData.password === this.loginform.value.password
         ) {
           this.authService.login();
+          let ans = this.authService.getValue()._value;
+
+          if (ans) {
+            console.log('login true');
+            this.router.navigate(['/home']);
+          } else {
+            console.log('login failed');
+          }
+
+          // this.authService.loggedInSubject$.subscribe((res: boolean) => {
+          //   if (res) {
+          //     console.log('login true');
+          //     this.router.navigate(['/home']);
+          //   } else {
+          //     console.log('login failed');
+          //   }
+          // });
+
+          // if (this.authService.getvalue()._value) {
+          //   console.log('login true');
+          //   this.router.navigate(['/home']);
+          // } else {
+          //   console.log('login false');
+          // }
 
           // this.authService.isAuthenticated().subscribe(
           //   (authenticated: boolean) => {
           //     if (authenticated) {
           //       // console.log('from login ', authenticated);
-          //       console.log('login response true');
-
-          //       this.router.navigate(['/home']);
-          //     } else {
-          //       console.log('login failed');
-          //       alert('login failed');
-          //     }
-          //   },
-          //   (error) => {
-          //     alert('there is a error');
-          //   }
-          // );
-
-          if (this.authService.getValue()) {
-            console.log('login response true');
-            this.router.navigate(['/home']);
-          } else {
-            console.log('login failed');
-            alert('login failed');
-          }
-
-          // this.authService.loggedIn$.subscribe(
-          //   (authenticated: boolean) => {
-          //     if (authenticated) {
           //       console.log('login response true');
 
           //       this.router.navigate(['/home']);

@@ -7,9 +7,10 @@ import { HomeComponent } from './home/home.component';
 
 import { AuthService } from '../auth-service';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './Navbar/navbar/navbar.component';
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, NavbarComponent],
   imports: [CommonModule, FeatureRoutingModule, HttpClientModule],
   providers: [],
 })

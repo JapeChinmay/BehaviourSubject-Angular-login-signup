@@ -1,4 +1,12 @@
-<h2 class="login-heading text-center">Login</h2>
+<h2 class="login-heading text-center" *ngIf="userDataFromSignup">
+  Welcome {{ userDataFromSignup.name }} {{ userDataFromSignup.lastname }}
+  <span>Your can login here</span>
+</h2>
+
+<h2 class="login-heading text-center" *ngIf="!userDataFromSignup">
+  Welcome <span>Your can login here</span>
+</h2>
+
 <div class="container form-container">
   <form [formGroup]="loginform" class="login-form-main">
     <div class="mb-3">

@@ -23,7 +23,7 @@ const nestedRouting: Routes = [
     path: 'home',
     loadChildren: () =>
       import('./feature/feature.module').then((m) => m.FeatureModule),
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
   },
   //wildcard route
   { path: '**', redirectTo: '/login', pathMatch: 'full' },
