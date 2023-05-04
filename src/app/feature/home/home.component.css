@@ -8,3 +8,9 @@
   background-color: #845ec2;
   color: white;
 }
+
+.error-handle-text {
+  text-align: center;
+  color: #845ec2;
+  margin-top: 3rem;
+}

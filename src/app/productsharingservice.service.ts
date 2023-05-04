@@ -21,9 +21,15 @@ export class ProductsharingserviceService {
   }
 
   addToCart(product: productdetails) {
-    this.products.push(product);
-    this.productCont$.next(this.productCont$.value + 1);
-    this.totalPriceofProducts += product.price;
+    const ID = product.id;
+    const aleadyAdded = this.products.find((item) => item.id === ID);
+    if (aleadyAdded) {
+      alert('This product is already in the cart, add more units there');
+    } else {
+      this.products.push(product);
+      this.productCont$.next(this.productCont$.value + 1);
+      this.totalPriceofProducts += product.price;
+    }
   }
 
   updateRemovedPrice(title: string): number {
@@ -40,5 +46,24 @@ export class ProductsharingserviceService {
 
   getPrice(): number {
     return this.totalPriceofProducts;
+  }
+
+  setProducts(updatedProducts: productdetails[]) {
+    this.products = updatedProducts;
+    console.log('updated after removal');
+  }
+
+  setPrice(updatedPrice: number) {
+    this.totalPriceofProducts = updatedPrice;
+  }
+
+  updateQuantity(product: productdetails): void {
+    const ID = product.id;
+    const productofWhichQuantityToBeUpdated = this.products.find(
+      (itmem) => itmem.id === ID
+    );
+    if (productofWhichQuantityToBeUpdated) {
+      productofWhichQuantityToBeUpdated.productQuantity += 1;
+    }
   }
 }

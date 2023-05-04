@@ -15,6 +15,7 @@ import { ProductsharingserviceService } from 'src/app/productsharingservice.serv
 })
 export class HomeComponent {
   products: any[] = [];
+  dataFetchinginProgess: boolean = true;
 
   constructor(
     private router: Router,
@@ -27,7 +28,14 @@ export class HomeComponent {
   ngOnInit(): void {
     this.apiService.getProducts().subscribe((data: any) => {
       this.products = data;
-      console.log(data);
+
+      this.products.forEach((product: productdetails) => {
+        product.productQuantity = 1;
+      });
+
+      console.log(this.products);
+
+      this.dataFetchinginProgess = false;
     });
 
     //
@@ -35,6 +43,8 @@ export class HomeComponent {
 
   addToCart(product: productdetails): void {
     this.productSharingService.addToCart(product);
+    console.log(product);
+
     ///////////
   }
 }

@@ -1,6 +1,5 @@
 .smaller-image {
-  height: fit-content;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .main-container {
@@ -11,4 +10,22 @@
 
 .product-info {
   color: lightgreen;
+}
+.remove-button {
+  width: calc(5rem + 0.3vw);
+}
+
+.add-more-units-button {
+  background-color: #845ec2;
+  color: white;
+
+  height: 3rem;
+}
+
+.product-quantity-div {
+  margin-top: calc(1rem + 0.6vw);
+}
+
+.product-quantity {
+  margin-left: 10rem;
 }

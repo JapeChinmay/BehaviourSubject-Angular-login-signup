@@ -9,4 +9,5 @@ export interface productdetails {
     count: number;
   };
   title: string;
+  productQuantity: number;
 }

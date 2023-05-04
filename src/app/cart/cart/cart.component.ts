@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { productdetails } from 'src/app/Interface/productInterface';
 import { ProductsharingserviceService } from 'src/app/productsharingservice.service';
 
@@ -10,6 +10,7 @@ import { ProductsharingserviceService } from 'src/app/productsharingservice.serv
 export class CartComponent implements OnInit {
   cartProducts: productdetails[] = [];
   totalPrice: number = 0;
+  // productQuantity: number = 1;
 
   constructor(private productSharingService: ProductsharingserviceService) {}
 
@@ -19,10 +20,27 @@ export class CartComponent implements OnInit {
   }
 
   removeProduct(producttitle: string) {
-    this.cartProducts = this.cartProducts.filter(
-      (item) => item.title !== producttitle
+    const removedProduct = this.cartProducts.find(
+      (item) => item.title === producttitle
     );
+    if (removedProduct) {
+      const removedProductPrice = removedProduct.price;
+      this.cartProducts = this.cartProducts.filter(
+        (item) => item.title !== producttitle
+      );
+      this.totalPrice -= removedProductPrice;
+      if (this.totalPrice < 0) {
+        this.totalPrice = 0;
+      }
+      console.log('removed from parent cart');
+      this.productSharingService.setProducts(this.cartProducts);
+      this.productSharingService.setPrice(this.totalPrice);
+    }
+  }
 
-    console.log('removed from parent cart');
+  addMoreUnits(product: productdetails) {
+    this.totalPrice += product.price;
+    this.productSharingService.setPrice(this.totalPrice);
+    this.productSharingService.updateQuantity(product);
   }
 }

@@ -1,9 +1,13 @@
 <app-navbar></app-navbar>
 
-<div class="container">
+<h2 class="error-handle-text" *ngIf="dataFetchinginProgess">
+  Fetching Data....
+</h2>
+
+<div class="container" *ngIf="!dataFetchinginProgess">
   <div class="row">
-    <div class="col-md-4" *ngFor="let product of products">
-      <div class="card mb-4 box-shadow">
+    <div class="col-md-3" *ngFor="let product of products">
+      <div class="card mb-3 box-shadow">
         <img
           class="card-img-top product-image"
           [src]="product.image"

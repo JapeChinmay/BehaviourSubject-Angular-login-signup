@@ -2,12 +2,13 @@
   <div class="row">
     <div class="col">
       <h2>Cart</h2>
-      <small>Total : {{ totalPrice }}</small>
+      <small>Total : {{ totalPrice.toFixed(2) }}</small>
 
       <div *ngIf="cartProducts && cartProducts.length > 0">
         <app-cartproductlist
           [products]="cartProducts"
           (removeEvent)="removeProduct($event)"
+          (AddMoreUnitsOfProduct)="addMoreUnits($event)"
         ></app-cartproductlist>
       </div>
 

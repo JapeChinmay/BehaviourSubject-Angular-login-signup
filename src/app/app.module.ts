@@ -8,10 +8,9 @@ import { LoginModule } from './login/login.module';
 import { FeatureModule } from './feature/feature.module';
 import { AuthService } from './auth-service';
 import { CartModule } from './cart/cart.module';
-import { CartpipePipe } from './cartpipe.pipe';
 
 @NgModule({
-  declarations: [AppComponent, CartpipePipe],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
