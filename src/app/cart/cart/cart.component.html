@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Cart</h2>
+      <small>Total : {{ totalPrice }}</small>
+
+      <div *ngIf="cartProducts && cartProducts.length > 0">
+        <app-cartproductlist
+          [products]="cartProducts"
+          (removeEvent)="removeProduct($event)"
+        ></app-cartproductlist>
+      </div>
+
+      <div *ngIf="!cartProducts || cartProducts.length === 0">
+        <h2>Your cart is empty</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <button class="btn checkout-btn">Checkout</button>
+  </div>
+</div>

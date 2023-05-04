@@ -1,0 +1,11 @@
+.navbar-user-details {
+  color: white;
+  margin-right: 3rem;
+  font-size: small;
+}
+
+.navbar-custom {
+  background-color: #845ec2;
+  color: white;
+  margin-bottom: 2rem;
+}

@@ -23,4 +23,8 @@ export class dataSharingService {
     // console.log(this.userData.asObservable());
     return this.userData.asObservable();
   }
+
+  getUserDataOnNavbar(): Observable<userDetails> {
+    return this.userData.asObservable();
+  }
 }

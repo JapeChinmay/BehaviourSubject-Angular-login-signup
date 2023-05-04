@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+
 <div class="container">
   <div class="row">
     <div class="col-md-4" *ngFor="let product of products">
@@ -10,15 +11,15 @@
         />
         <div class="card-body">
           <h5 class="card-title">{{ product.name }}</h5>
-          <p class="card-text">{{ product.description }}</p>
+          <p class="card-text">{{ product.description | toShorten : 20 }}</p>
           <div class="d-flex justify-content-between align-items-center">
             <button
-              class="btn btn-sm btn-outline-secondary"
+              class="btn btn-sm add-to-cart-button"
               (click)="addToCart(product)"
             >
               Add to cart
             </button>
-            <small class="text-muted">{{ product.price | currency }}</small>
+            <small class="text-muted">{{ product.price }}</small>
           </div>
         </div>
       </div>

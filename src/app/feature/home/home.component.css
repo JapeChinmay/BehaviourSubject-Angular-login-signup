@@ -3,3 +3,8 @@
   height: 150px;
   object-fit: contain;
 }
+
+.add-to-cart-button {
+  background-color: #845ec2;
+  color: white;
+}

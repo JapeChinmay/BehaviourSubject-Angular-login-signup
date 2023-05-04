@@ -7,10 +7,11 @@ import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { FeatureModule } from './feature/feature.module';
 import { AuthService } from './auth-service';
-import { CartComponent } from './Cartmodule/cart/cart.component';
+import { CartModule } from './cart/cart.module';
+import { CartpipePipe } from './cartpipe.pipe';
 
 @NgModule({
-  declarations: [AppComponent, CartComponent],
+  declarations: [AppComponent, CartpipePipe],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -18,6 +19,7 @@ import { CartComponent } from './Cartmodule/cart/cart.component';
     FormsModule,
     // LoginModule,
     FeatureModule,
+    CartModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

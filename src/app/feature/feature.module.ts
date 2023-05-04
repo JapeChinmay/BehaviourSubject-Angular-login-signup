@@ -7,10 +7,11 @@ import { HomeComponent } from './home/home.component';
 
 import { AuthService } from '../auth-service';
 import { HttpClientModule } from '@angular/common/http';
-import { NavbarComponent } from './Navbar/navbar/navbar.component';
+import { NavbarComponent } from './Navbar/navbar.component';
+import { ToShortenPipe } from '../to-shorten.pipe';
 
 @NgModule({
-  declarations: [HomeComponent, NavbarComponent],
+  declarations: [HomeComponent, NavbarComponent, ToShortenPipe],
   imports: [CommonModule, FeatureRoutingModule, HttpClientModule],
   providers: [],
 })
