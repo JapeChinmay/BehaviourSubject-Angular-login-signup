@@ -7,6 +7,12 @@
         {{ product.title }} - {{ product.productQuantity }} - {{ product.id }}
       </li>
     </ul>
+
+    <div class="subtotal-div">
+      <h3 class="subtotal">
+        Subtotal : <span>{{ totalCartSubtotal.toFixed(2) }}</span>
+      </h3>
+    </div>
   </div>
   <div class="container">
     <h2 class="heading" *ngIf="userData">

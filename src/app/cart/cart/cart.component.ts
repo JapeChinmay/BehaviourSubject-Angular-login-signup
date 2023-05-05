@@ -13,7 +13,6 @@ export class CartComponent implements OnInit {
   cartProducts: productdetails[] = [];
   totalPrice: number = 0;
   // productQuantity: number = 1;
-  IncartItems: number = 0;
 
   constructor(
     private productSharingService: ProductsharingserviceService,
@@ -25,7 +24,6 @@ export class CartComponent implements OnInit {
     this.cartProducts = this.productSharingService.getProducts();
     this.totalPrice = this.productSharingService.getPrice();
     console.log(this.cartProducts);
-    this.IncartItems = this.cartProducts.length;
   }
 
   toCheckout() {
@@ -41,34 +39,53 @@ export class CartComponent implements OnInit {
     }
   }
 
-  removeProduct(producttitle: string) {
+  removeProduct(product: productdetails) {
+    if (product.productQuantity > 1) {
+      const priceTobeSubtracted = product.price * product.productQuantity;
+      this.totalPrice = this.totalPrice - priceTobeSubtracted;
+    }
+
     const removedProduct = this.cartProducts.find(
-      (item) => item.title === producttitle
+      (item) => item.title === product.title
     );
+
     if (removedProduct) {
       const removedProductPrice = removedProduct.price;
       this.cartProducts = this.cartProducts.filter(
-        (item) => item.title !== producttitle
+        (item) => item.title !== product.title
       );
       this.totalPrice -= removedProductPrice;
       if (this.totalPrice < 0) {
         this.totalPrice = 0;
       }
       // console.log('removed from parent cart');
-      this.productSharingService.setProducts(this.cartProducts);
+      const productCountOnremoving = this.cartProducts.length;
+      this.productSharingService.setProducts(
+        this.cartProducts,
+        productCountOnremoving
+      );
+
       // console.log(this.totalPrice);
       // console.log(this.cartProducts);
       this.productSharingService.setPrice(this.totalPrice);
+
       console.log('after removing', this.cartProducts);
-      if (this.cartProducts.length == 0) {
-        this.IncartItems = 0;
-      }
     }
   }
 
   addMoreUnits(product: productdetails) {
     this.totalPrice += product.price;
     this.productSharingService.setPrice(this.totalPrice);
-    this.productSharingService.updateQuantity(product);
+    this.productSharingService.AddQuantity(product);
+    console.log(product.productQuantity, 'addingunits');
+  }
+
+  removeUnits(product: productdetails) {
+    if (product.productQuantity > 1) {
+      this.totalPrice = this.totalPrice - product.price;
+      this.productSharingService.setPrice(this.totalPrice);
+      this.productSharingService.SubtractQuantity(product);
+      console.log(product.productQuantity, 'removing units');
+    }
   }
 }

@@ -48,8 +48,10 @@ export class ProductsharingserviceService {
     return this.totalPriceofProducts;
   }
 
-  setProducts(updatedProducts: productdetails[]) {
+  setProducts(updatedProducts: productdetails[], productCount: number) {
     this.products = updatedProducts;
+    this.productCont$.next(productCount);
+
     console.log('updated after removal');
   }
 
@@ -57,7 +59,7 @@ export class ProductsharingserviceService {
     this.totalPriceofProducts = updatedPrice;
   }
 
-  updateQuantity(product: productdetails): void {
+  AddQuantity(product: productdetails): void {
     const ID = product.id;
     const productofWhichQuantityToBeUpdated = this.products.find(
       (itmem) => itmem.id === ID
@@ -65,5 +67,15 @@ export class ProductsharingserviceService {
     if (productofWhichQuantityToBeUpdated) {
       productofWhichQuantityToBeUpdated.productQuantity += 1;
     }
+  }
+  SubtractQuantity(product: productdetails) {
+    const ID = product.id;
+    const productofWhichQuantityToBeSubtracted = this.products.find((item) => {
+      return item.id === ID;
+    });
+    if (productofWhichQuantityToBeSubtracted) {
+      productofWhichQuantityToBeSubtracted.productQuantity -= 1;
+    }
+    console.log(product.productQuantity, 'from service removing units');
   }
 }

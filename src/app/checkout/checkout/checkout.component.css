@@ -70,3 +70,8 @@ button:active {
   background-color: antiquewhite;
   color: #845ec2;
 }
+.subtotal {
+  font-size: small;
+  margin-top: 2rem;
+  text-align: center;
+}

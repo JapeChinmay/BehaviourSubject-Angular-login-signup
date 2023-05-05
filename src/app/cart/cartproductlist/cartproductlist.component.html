@@ -19,7 +19,7 @@
             <span
               ><button
                 class="btn btn-danger remove-button"
-                (click)="removeProduct(product.title)"
+                (click)="removeProduct(product)"
               >
                 Remove
               </button></span
@@ -27,15 +27,25 @@
           </div>
         </div>
       </div>
-      <!-- <div class="product-quantity-div">
+      <div class="product-quantity-div">
         <button
           class="btn add-more-units-button"
           (click)="addMoreUnits(product)"
         >
           Add more units
         </button>
-        <span class="product-quantity">{{ product.productQuantity }}</span>
-      </div> -->
+        <div class="product-quantity">
+          <span class="quantity-label">Quantity:</span>
+          <span class="quantity-value">{{ product.productQuantity }}</span>
+        </div>
+        <button
+          class="btn remove-units-button"
+          [disabled]="product.productQuantity === 1"
+          (click)="removeUnits(product)"
+        >
+          Remove Units
+        </button>
+      </div>
     </div>
   </div>
 </div>

@@ -18,17 +18,29 @@
   font-size: small;
 }
 
-.add-more-units-button {
-  background-color: #845ec2;
-  color: white;
-
-  height: 3rem;
-}
-
 .product-quantity-div {
-  margin-top: calc(1rem + 0.6vw);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
 }
 
 .product-quantity {
-  margin-left: 10rem;
+  display: flex;
+  align-items: center;
+}
+
+.quantity-value {
+  margin-right: 0.5rem;
+}
+
+.add-more-units-button {
+  background-color: #4caf50;
+  color: white;
+  margin-right: 1rem;
+}
+
+.remove-units-button {
+  background-color: #f44336;
+  color: white;
 }

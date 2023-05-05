@@ -10,8 +10,9 @@ import { ProductsharingserviceService } from 'src/app/productsharingservice.serv
 export class CartproductlistComponent {
   @Input() products: productdetails[] = [];
 
-  @Output() removeEvent = new EventEmitter<string>();
+  @Output() removeEvent = new EventEmitter<productdetails>();
   @Output() AddMoreUnitsOfProduct = new EventEmitter<productdetails>();
+  @Output() RemoveUnitsOfProduct = new EventEmitter<productdetails>();
 
   constructor(private productSharingService: ProductsharingserviceService) {}
 
@@ -19,15 +20,20 @@ export class CartproductlistComponent {
     // product.productQuantity += 1;
     this.AddMoreUnitsOfProduct.emit(product);
   }
+  removeUnits(product: productdetails) {
+    this.RemoveUnitsOfProduct.emit(product);
+  }
 
-  removeProduct(producttitle: string) {
+  removeProduct(product: productdetails) {
     // const producttoberemoved =  this.products.find((item)=> item.title === producttitle);
     // if(producttoberemoved) {
     //      const NewTotalPrice =  producttoberemoved.price * producttoberemoved.productQuantity;
     //      this.productSharingService.setPrice(NewTotalPrice)
     // }
-    this.removeEvent.emit(producttitle);
+    this.removeEvent.emit(product);
     console.log('emitted');
-    this.products = this.products.filter((item) => item.title !== producttitle);
+    this.products = this.products.filter(
+      (item) => item.title !== product.title
+    );
   }
 }

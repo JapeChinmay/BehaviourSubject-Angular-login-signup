@@ -4,6 +4,7 @@ import { productdetails } from 'src/app/Interface/productInterface';
 import { ShareCartToCheckoutService } from 'src/app/share-cart-to-checkout.service';
 import { dataSharingService } from 'src/app/dataSharingService';
 import { userDetails } from 'src/app/Interface';
+import { ProductsharingserviceService } from 'src/app/productsharingservice.service';
 
 @Component({
   selector: 'app-checkout',
@@ -14,12 +15,14 @@ export class CheckoutComponent implements OnInit {
   checkOutForm!: FormGroup;
 
   cartProductsAtcheckout: productdetails[] = [];
+  totalCartSubtotal: number = 0;
   userData: userDetails | undefined;
 
   constructor(
     private formBuilder: FormBuilder,
     private shareDataWithCheckout: ShareCartToCheckoutService,
-    private dataSharingService: dataSharingService
+    private dataSharingService: dataSharingService,
+    private productSharingService: ProductsharingserviceService
   ) {}
 
   ngOnInit(): void {
@@ -41,5 +44,7 @@ export class CheckoutComponent implements OnInit {
     this.dataSharingService.getUserDataOncheckout().subscribe((comingdata) => {
       this.userData = comingdata;
     });
+
+    this.totalCartSubtotal = this.productSharingService.getPrice();
   }
 }
