@@ -34,6 +34,8 @@ export class CartComponent implements OnInit {
       }
       console.log('removed from parent cart');
       this.productSharingService.setProducts(this.cartProducts);
+      console.log(this.totalPrice);
+      console.log(this.cartProducts);
       this.productSharingService.setPrice(this.totalPrice);
     }
   }

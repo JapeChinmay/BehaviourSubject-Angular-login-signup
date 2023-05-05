@@ -10,4 +10,5 @@ export interface productdetails {
   };
   title: string;
   productQuantity: number;
+  totalPrice?: number;
 }
