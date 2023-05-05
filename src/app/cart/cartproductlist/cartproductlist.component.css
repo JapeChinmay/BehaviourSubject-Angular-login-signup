@@ -1,5 +1,7 @@
-.smaller-image {
-  object-fit: contain;
+.product-image {
+  width: max(300px, 10%);
+  height: max(400px, 10%);
+  object-fit: cover;
 }
 
 .main-container {
@@ -13,6 +15,7 @@
 }
 .remove-button {
   width: calc(5rem + 0.3vw);
+  font-size: small;
 }
 
 .add-more-units-button {

@@ -21,6 +21,11 @@ export class CartproductlistComponent {
   }
 
   removeProduct(producttitle: string) {
+    // const producttoberemoved =  this.products.find((item)=> item.title === producttitle);
+    // if(producttoberemoved) {
+    //      const NewTotalPrice =  producttoberemoved.price * producttoberemoved.productQuantity;
+    //      this.productSharingService.setPrice(NewTotalPrice)
+    // }
     this.removeEvent.emit(producttitle);
     console.log('emitted');
     this.products = this.products.filter((item) => item.title !== producttitle);

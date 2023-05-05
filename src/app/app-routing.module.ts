@@ -30,6 +30,11 @@ const nestedRouting: Routes = [
     path: 'cart',
     loadChildren: () => import('./cart/cart.module').then((m) => m.CartModule),
   },
+  {
+    path: 'checkout',
+    loadChildren: () =>
+      import('./checkout/checkout.module').then((m) => m.CheckoutModule),
+  },
 
   //wildcard route
   { path: '**', redirectTo: '/login', pathMatch: 'full' },

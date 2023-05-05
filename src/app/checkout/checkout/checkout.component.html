@@ -1,0 +1,164 @@
+<button class="go-back-button" routerLink="/cart">Go back</button>
+<div class="main-container">
+  <div class="cart-at-checkout">
+    <h2 class="your-cart-text">Your cart</h2>
+    <ul>
+      <li *ngFor="let product of cartProductsAtcheckout">
+        {{ product.title }} - {{ product.productQuantity }} - {{ product.id }}
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <h2 class="heading" *ngIf="userData">
+      Confirm Your order {{ userData.name }}!
+    </h2>
+    <h2 *ngIf="!userData">Confirm Your Order!</h2>
+    <form class="checkout-form-main" [formGroup]="checkOutForm">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Card Number</label>
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          formControlName="cardNumber"
+        />
+
+        <small
+          *ngIf="
+            checkOutForm.controls['cardNumber'].dirty &&
+            checkOutForm.hasError('required', 'cardNumber')
+          "
+          class="text-danger"
+          >*Enter valid Card Number</small
+        >
+        <br />
+        <small
+          *ngIf="
+            checkOutForm.controls['cardNumber'].dirty &&
+            checkOutForm.hasError('pattern', 'cardNumber')
+          "
+          class="text-danger"
+          >*Enter valid Card Number</small
+        >
+        <!-- 
+        <small
+          *ngIf="
+            checkOutForm.controls['cardNumber'].dirty &&
+            checkOutForm.hasError('pattern', 'firstname')
+          "
+          class="text-danger"
+          >*firstname must be alphabet</small
+        > -->
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail2" class="form-label">Pincode</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputEmail2"
+          formControlName="pincode"
+        />
+
+        <small
+          *ngIf="
+            checkOutForm.controls['pincode'].dirty &&
+            checkOutForm.hasError('required', 'pincode')
+          "
+          class="text-danger"
+          >*Enter valid pincode</small
+        >
+        <br />
+        <small
+          *ngIf="
+            checkOutForm.controls['pincode'].dirty &&
+            checkOutForm.hasError('pattern', 'pincode')
+          "
+          class="text-danger"
+          >*Enter valid pincode pattern</small
+        >
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail3" class="form-label">State</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputEmail3"
+          formControlName="state"
+        />
+
+        <small
+          *ngIf="
+            checkOutForm.controls['state'].dirty &&
+            checkOutForm.hasError('required', 'state')
+          "
+          class="text-danger"
+          >*State is required</small
+        >
+        <br />
+        <small
+          *ngIf="
+            checkOutForm.controls['state'].dirty &&
+            checkOutForm.hasError('pattern', 'state')
+          "
+          class="text-danger"
+          >*Enter valid state value
+        </small>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail4" class="form-label">Country</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputEmail4"
+          formControlName="country"
+        />
+
+        <small
+          *ngIf="
+            checkOutForm.controls['country'].dirty &&
+            checkOutForm.hasError('required', 'country')
+          "
+          class="text-danger"
+          >*Country is required</small
+        >
+        <br />
+        <small
+          *ngIf="
+            checkOutForm.controls['country'].dirty &&
+            checkOutForm.hasError('pattern', 'country')
+          "
+          class="text-danger"
+          >*Enter valid Country value</small
+        >
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail15" class="form-label">Address</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputEmail15"
+          formControlName="address"
+        />
+
+        <small
+          *ngIf="
+            checkOutForm.controls['address'].dirty &&
+            checkOutForm.hasError('required', 'address')
+          "
+          class="text-danger"
+          >*Address is required</small
+        >
+        <br />
+      </div>
+
+      <button
+        [disabled]="checkOutForm.invalid"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Confirm Order
+      </button>
+    </form>
+  </div>
+</div>

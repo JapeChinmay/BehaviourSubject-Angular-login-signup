@@ -1,8 +1,13 @@
+<div class="">
+  <button class="go-back-button" routerLink="/home">Go back</button>
+</div>
 <div class="container">
   <div class="row">
     <div class="col">
       <h2>Cart</h2>
-      <small>Total : {{ totalPrice.toFixed(2) }}</small>
+      <button class="total-price" *ngIf="IncartItems">
+        <small>Total : {{ totalPrice.toFixed(2) }}</small>
+      </button>
 
       <div *ngIf="cartProducts && cartProducts.length > 0">
         <app-cartproductlist
@@ -19,6 +24,6 @@
   </div>
 
   <div class="text-center">
-    <button class="btn checkout-btn">Checkout</button>
+    <button class="btn checkout-btn" (click)="toCheckout()">Checkout</button>
   </div>
 </div>

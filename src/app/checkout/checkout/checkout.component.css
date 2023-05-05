@@ -1,0 +1,72 @@
+.go-back-button {
+  background-color: #845ec2;
+  width: calc(6rem + 2vw);
+  height: calc(2rem + 1vw);
+  padding: 3px;
+  cursor: pointer;
+  margin-left: 3rem;
+  margin-top: 1.2rem;
+  border-radius: 10px;
+  color: white;
+  border: none;
+}
+.main-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.your-cart-text {
+  text-align: center;
+  color: #845ec2;
+  margin-top: 3rem;
+  margin-left: 0.3rem;
+}
+.container {
+  width: max(450px, 40%);
+  margin: calc(3rem + 3vw) auto;
+  margin-left: 4rem;
+}
+
+.heading {
+  text-align: center;
+  color: #845ec2;
+}
+
+.checkout-form-main {
+  border: 1px solid #845ec2;
+  padding: 2rem;
+}
+
+button {
+  background-color: #845ec2;
+  width: calc(6rem + 2vw);
+  height: calc(2rem + 1vw);
+  padding: 3px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: lightgreen;
+}
+button:active {
+  background-color: gainsboro;
+}
+
+.input.ng-invalid.ng-dirty {
+  border: 1px solid red;
+}
+.form-control:focus {
+  border-color: none;
+  box-shadow: none;
+}
+
+.cart-at-checkout {
+  width: min(300px, 40%);
+  margin: calc(3rem + 3vw) auto;
+  border: 1px solid #845ec2;
+  height: calc(450px + 0.6vw);
+  margin-top: calc(7.5rem + 0.8vw);
+  background-color: antiquewhite;
+  color: #845ec2;
+}

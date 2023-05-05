@@ -5,10 +5,31 @@ h2 {
   color: #845ec2;
 }
 
+.go-back-button {
+  background-color: #845ec2;
+  width: calc(6rem + 2vw);
+  height: calc(2rem + 1vw);
+  padding: 3px;
+  cursor: pointer;
+  margin-left: 3rem;
+  margin-top: 1.2rem;
+  border-radius: 10px;
+  color: white;
+  border: none;
+}
+
 small {
   text-align: center;
-  font-weight: 600;
+  font-weight: 300;
   font-size: medium;
+}
+.total-price {
+  background-color: #845ec2;
+  color: white;
+  border: none;
+  width: calc(6rem + 2vw);
+  height: calc(2rem + 1vw);
+  border-radius: 5px;
 }
 
 .checkout-btn {

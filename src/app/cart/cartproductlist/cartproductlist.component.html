@@ -9,7 +9,7 @@
         />
         <div class="card-body">
           <h5 class="card-title">{{ product.title }}</h5>
-          <p class="card-text">{{ product.description }}</p>
+          <p class="card-text">{{ product.description | cartpipe : 35 }}</p>
           <div class="d-flex justify-content-between align-items-center">
             <small class="text-muted">{{ product.category }}</small>
             <small class="product-info"
