@@ -52,17 +52,31 @@ export class ThankyouComponent implements OnInit {
       this.INDIVIDUALPRODUCTQUANTITY.push(obj);
     });
 
-    if (
-      this.INDIVIDUALPRODUCTQUANTITY.length === this.userCartProducts.length
-    ) {
-      this.DAYSFORSHIPPING = 2;
+    if (this.INDIVIDUALPRODUCTQUANTITY.length > 5) {
+      const FACTOR: number = 1.2;
+      this.DAYSFORSHIPPING = this.calculateShippingDays(FACTOR);
     } else {
-      let FACTOR = 2.2;
-      const gapOfDays =
-        this.INDIVIDUALPRODUCTQUANTITY.length - this.userCartProducts.length;
-      this.DAYSFORSHIPPING = Math.floor(FACTOR * gapOfDays) + 5;
+      const FACTOR: number = 0.5;
+      this.DAYSFORSHIPPING = this.calculateShippingDays(FACTOR);
     }
     console.log(this.DAYSFORSHIPPING);
     this.FINALNOTE = `YOur order will be shipped in ${this.DAYSFORSHIPPING} days`;
+  }
+
+  calculateShippingDays(FACTOR: number): number {
+    this.INDIVIDUALPRODUCTQUANTITY.filter((product) => {
+      product.productQuantity > 3;
+    });
+
+    if (this.INDIVIDUALPRODUCTQUANTITY.length > 3) {
+      const addingAllQuantity = this.INDIVIDUALPRODUCTQUANTITY.reduce(
+        (acc, currentValue) => acc + currentValue.productQuantity,
+        0
+      );
+      const ans = Math.ceil((addingAllQuantity * FACTOR) / 5);
+      return ans;
+    } else {
+      return 2;
+    }
   }
 }
