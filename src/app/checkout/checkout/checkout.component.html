@@ -19,7 +19,11 @@
       Confirm Your order {{ userData.name }}!
     </h2>
     <h2 *ngIf="!userData">Confirm Your Order!</h2>
-    <form class="checkout-form-main" [formGroup]="checkOutForm">
+    <form
+      class="checkout-form-main"
+      [formGroup]="checkOutForm"
+      (ngSubmit)="onSubmittingCheckout(checkOutForm)"
+    >
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Card Number</label>
         <input
@@ -158,13 +162,7 @@
         <br />
       </div>
 
-      <button
-        [disabled]="checkOutForm.invalid"
-        type="submit"
-        class="btn btn-primary"
-      >
-        Confirm Order
-      </button>
+      <button type="submit" class="btn btn-primary">Confirm Order</button>
     </form>
   </div>
 </div>

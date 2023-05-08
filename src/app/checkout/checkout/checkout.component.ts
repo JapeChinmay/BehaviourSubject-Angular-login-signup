@@ -5,6 +5,8 @@ import { ShareCartToCheckoutService } from 'src/app/share-cart-to-checkout.servi
 import { dataSharingService } from 'src/app/dataSharingService';
 import { userDetails } from 'src/app/Interface';
 import { ProductsharingserviceService } from 'src/app/productsharingservice.service';
+import { Router } from '@angular/router';
+import { ThankyoupaeService } from 'src/app/thankyoupae.service';
 
 @Component({
   selector: 'app-checkout',
@@ -22,7 +24,9 @@ export class CheckoutComponent implements OnInit {
     private formBuilder: FormBuilder,
     private shareDataWithCheckout: ShareCartToCheckoutService,
     private dataSharingService: dataSharingService,
-    private productSharingService: ProductsharingserviceService
+    private productSharingService: ProductsharingserviceService,
+    private router: Router,
+    private ThankYourPageService: ThankyoupaeService
   ) {}
 
   ngOnInit(): void {
@@ -46,5 +50,16 @@ export class CheckoutComponent implements OnInit {
     });
 
     this.totalCartSubtotal = this.productSharingService.getPrice();
+  }
+
+  onSubmittingCheckout(formData: FormGroup) {
+    const cartProductsForThankYourService: productdetails[] =
+      this.cartProductsAtcheckout;
+    this.ThankYourPageService.getAndUpdateDataForThankYourPage(
+      formData,
+      cartProductsForThankYourService
+    );
+
+    this.router.navigate(['/thankyou']);
   }
 }

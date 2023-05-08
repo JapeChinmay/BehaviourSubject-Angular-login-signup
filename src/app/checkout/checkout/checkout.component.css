@@ -10,11 +10,11 @@
   color: white;
   border: none;
 }
+
 .main-container {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
 }
 
 .your-cart-text {
@@ -23,10 +23,10 @@
   margin-top: 3rem;
   margin-left: 0.3rem;
 }
+
 .container {
-  width: max(450px, 40%);
+  width: max(450px, 60%);
   margin: calc(3rem + 3vw) auto;
-  margin-left: 4rem;
 }
 
 .heading {
@@ -37,6 +37,8 @@
 .checkout-form-main {
   border: 1px solid #845ec2;
   padding: 2rem;
+  width: 100%;
+  max-width: 800px;
 }
 
 button {
@@ -46,9 +48,11 @@ button {
   padding: 3px;
   cursor: pointer;
 }
+
 button:hover {
   background-color: lightgreen;
 }
+
 button:active {
   background-color: gainsboro;
 }
@@ -56,20 +60,27 @@ button:active {
 .input.ng-invalid.ng-dirty {
   border: 1px solid red;
 }
+
 .form-control:focus {
   border-color: none;
   box-shadow: none;
 }
 
 .cart-at-checkout {
-  width: min(300px, 40%);
+  width: min(300px, 30%);
   margin: calc(3rem + 3vw) auto;
   border: 1px solid #845ec2;
-  height: calc(450px + 0.6vw);
-  margin-top: calc(7.5rem + 0.8vw);
+
+  margin-top: calc(4rem + 0.8vw);
   background-color: antiquewhite;
   color: #845ec2;
+
+  padding: 1rem;
+  border-radius: 5px;
+
+  overflow: auto;
 }
+
 .subtotal {
   font-size: small;
   margin-top: 2rem;

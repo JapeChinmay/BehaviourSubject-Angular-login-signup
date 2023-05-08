@@ -1,7 +1,25 @@
+.navbar-custom .nav-link {
+  color: #ffffff;
+}
+
+.navbar-custom .nav-link span {
+  background-color: transparent;
+  color: #ffffff;
+}
+.navbar-custom .bi-cart-fill {
+  color: #ffffff;
+}
 .navbar-user-details {
   color: white;
   margin-right: 3rem;
   font-size: small;
+}
+.navbar-brand {
+  color: #ffffff;
+}
+
+.product-cart {
+  background-color: #1ee64d;
 }
 
 .navbar-custom {

@@ -7,7 +7,7 @@
 <div class="container" *ngIf="!dataFetchinginProgess">
   <div class="row">
     <div class="col-md-3" *ngFor="let product of products">
-      <div class="card mb-3 box-shadow">
+      <div class="card mb-3 box-shadow product-box">
         <img
           class="card-img-top product-image"
           [src]="product.image"
@@ -23,7 +23,7 @@
             >
               Add to cart
             </button>
-            <small class="text-muted">{{ product.price }}</small>
+            <small class="text-muted">{{ product.price | currency }}</small>
           </div>
         </div>
       </div>
